@@ -25,5 +25,13 @@ class RimdanOddiy:
         return natija
 
 
-rim_raqam = input("Rim raqamini kiriting: ").upper()
-print(f"Oddiy son: {RimdanOddiy.rimni_oddiyga(rim_raqam)}")
+while True:
+    rim_raqam = input("Rim raqamini kiriting (yoki 'exit' yozib chiqib keting): ").upper()
+    if rim_raqam == 'EXIT':
+        print("Dastur tugatildi.")
+        break
+    try:
+        oddiy_son = RimdanOddiy.rimni_oddiyga(rim_raqam)
+        print(f"Oddiy son: {oddiy_son}")
+    except Exception as e:
+        print("Xato! To'g'ri rim raqamini kiriting.")
