@@ -1,26 +1,15 @@
-import json
+class User:
+    def __init__(self, uname, password):
+        self.uname = uname
+        self.password = password
 
-from moduls import User
+    def to_dict(self):
+        return self.__dict__
 
-u = User("Abdulloh", "lwcardinal12@gmail.com", 1111)
-u2 = User("azizxon", "lwcardinal12@gmail.com",1234)
+    def __str__(self):
+        return f"login: {self.uname} -> paroli: {self.password}"
 
+    @classmethod
+    def dict_to(cls, d):
+        return cls(d["uname"], d["password"])
 
-
-path = "data.json"
-
-
-
-
-
-menu = ("1. Kirish\n"
-        "2. Ro'yhatdan O'tish\n")
-
-while True:
-    print(menu)
-    choice = input()
-    if choice == "1":
-        with open("example.json", "w") as file:
-            json.dump(u.to_dict(),u2.to_dict(), file, indent=4)
-    else:
-        print("Login yoki parol")
