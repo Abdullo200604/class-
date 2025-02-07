@@ -1,15 +1,15 @@
-class User:
-    def __init__(self, uname, password):
-        self.uname = uname
-        self.password = password
+import requests
+import json
 
-    def to_dict(self):
-        return self.__dict__
+shaxs = "uzb-muhammadsodikmu"
+sura = 2
 
-    def __str__(self):
-        return f"login: {self.uname} -> paroli: {self.password}"
+url = f"https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/{shaxs}/{sura}.json"
+response = requests.get(url).json()
+oyatlar = response['chapter'][2:5]
 
-    @classmethod
-    def dict_to(cls, d):
-        return cls(d["uname"], d["password"])
+# JSON faylga saqlash
+with open("oyatlar.json", "w", encoding="utf-8") as file:
+    json.dump(oyatlar, file, ensure_ascii=False, indent=4)
 
+print("Ma'lumotlar 'oyatlar.json' fayliga saqlandi.")
